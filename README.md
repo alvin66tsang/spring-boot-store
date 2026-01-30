@@ -1,19 +1,42 @@
-# The Ultimate Spring Boot Course
+##
+Spring Boot + Stripe Store
+This is a sample project designed to demonstrate the integration of Spring Boot with the Stripe API. It provides a clear, end-to-end example of how to handle secure checkout flows, manage products, and process payments in a Java environment.
 
-This repository contains the starter project for Part 2 of my Spring Boot course:
+🎯 Purpose
+The goal of this project is to provide a "boilerplate" for developers to understand:
 
-[https://codewithmosh.com/p/spring-boot-building-apis](https://codewithmosh.com/p/spring-boot-building-apis)
+1. How to initiate a Stripe Checkout Session from the backend.
+2. How to handle Webhooks to confirm successful payments.
+3. How to structure a simple MVC or RESTful store using Spring Boot.
 
-## About this Repository 
+💳 Stripe Integration Flow
+The payment process follows these steps:
 
-This project is based on the final project from Part 1 of the course, but I’ve cleaned it up and removed unnecessary playground code so we can focus on building APIs in Part 2.
+1. Selection: User add Product to Cart and clicks "Checkout".
+2. Session Creation: Spring Boot sends a request to Stripe to create a Session.
+3. Redirect: The app redirects the user to the Stripe-hosted URL.
+4. Verification: Upon success, Stripe sends a POST Webhook to our app to confirm the transaction.
 
-You’ll be cloning this repository and coding along with me as we extend the project.
+⚙️ Setup & Configuration
+To get started, you'll need to:
 
-To get started, clone the repository to your local machine:
+1. A Stripe account
+2. Clone the Repo: `git clone https://github.com/alvin66tsang/spring-boot-store.git`
+3. Add API keys to .env
+   STRIPE_SECRET_KEY=
+   STRIPE_WEBHOOK_SECRET_KEY=
+4. Run the app: `mvn spring-boot:run`
 
-```sh
-git clone https://github.com/mosh-hamedani/spring-api-starter
+📖 API Endpoints (Quick Look)
 
-cd spring-api
-```
+Authentication:
+POST /auth/login - Authenticate and receive a JWT.
+
+Order, Carts and Checkout:
+POST /carts -- Create a new cart for current user.
+POST /carts/{cartId}/items -- Add a product to the cart.
+POST /checkout -- Checkout the cart.
+
+GET /carts/{cartId} -- Get the cart by id.
+GET /orders -- Get all orders for current user.
+GET /orders/{orderId} -- Get the order by id.
