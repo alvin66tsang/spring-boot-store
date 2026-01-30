@@ -16,6 +16,9 @@ The payment process follows these steps:
 3. Redirect: The app redirects the user to the Stripe-hosted URL.
 4. Verification: Upon success, Stripe sends a POST Webhook to our app to confirm the transaction.
 
+⚙️ Swagger-UI for API test.
+https://spring-boot-store-production-28f7.up.railway.app/swagger-ui.html
+
 ⚙️ Setup & Configuration
 To get started, you'll need to:
 
