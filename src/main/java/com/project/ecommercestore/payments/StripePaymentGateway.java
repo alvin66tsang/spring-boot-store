@@ -33,7 +33,7 @@ public class StripePaymentGateway implements PaymentGateway{
                     .setMode(SessionCreateParams.Mode.PAYMENT)
                     .setSuccessUrl(websiteUrl + "/checkout-success?orderId=" + order.getId())
                     .setCancelUrl(websiteUrl + "/checkout-cancel")
-                            .putMetadata("order_id", order.getId().toString());
+                    .setPaymentIntentData(createPaymentIntentData(order));
 
             order.getItems().forEach(item -> {
                 var lineitem = createLineItem(item);
@@ -46,6 +46,11 @@ public class StripePaymentGateway implements PaymentGateway{
         } catch (StripeException e) {
             throw new PaymentException();
         }
+    }
+
+    private static SessionCreateParams.PaymentIntentData createPaymentIntentData(Order order) {
+        return SessionCreateParams.PaymentIntentData.builder()
+                .putMetadata("order_id", order.getId().toString()).build();
     }
 
     @Override
