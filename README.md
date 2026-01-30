@@ -1,5 +1,4 @@
-##
-Spring Boot + Stripe Store
+## Spring Boot + Stripe Store
 This is a sample project designed to demonstrate the integration of Spring Boot with the Stripe API. It provides a clear, end-to-end example of how to handle secure checkout flows, manage products, and process payments in a Java environment.
 
 🎯 Purpose
